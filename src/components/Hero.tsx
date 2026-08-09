@@ -63,7 +63,7 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
               <div className="relative bg-white rounded-3xl p-3 sm:p-4 shadow-xl border border-amber-200/80 overflow-hidden">
                 <div className="relative rounded-2xl overflow-hidden group">
                   <img
-                    src="https://lh3.googleusercontent.com/d/1J0_ddHAXvMANUOIes_ZhNI3ZENqSm4m9"
+                    src="/images/Parroquia.webp"
                     alt="Helados Manielados San José de Ocoa"
                     className="w-full h-auto object-cover rounded-2xl group-hover:scale-102 transition-transform duration-500"
                   />

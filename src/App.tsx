@@ -98,15 +98,6 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-amber-50 text-emerald-950 font-sans selection:bg-amber-300 selection:text-emerald-950">
-      {/* Top Notice Bar */}
-      <div className="bg-emerald-950 text-amber-200 py-2 px-4 text-center text-xs font-semibold flex items-center justify-center gap-2 border-b border-emerald-900">
-        <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-        <span>¡Envíos rápidos a domicilio en todo San José de Ocoa! Ordena directamente al </span>
-        <a href="https://wa.me/18293488943" target="_blank" rel="noreferrer" className="underline hover:text-white font-bold">
-          829-348-8943
-        </a>
-      </div>
-
       {/* Main Navbar */}
       <Navbar
         cartCount={totalCartCount}

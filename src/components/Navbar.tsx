@@ -16,7 +16,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
             <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-800 via-emerald-700 to-amber-500 p-0.5 shadow-md shadow-emerald-900/10 group-hover:scale-105 transition-transform duration-300">
               <div className="w-full h-full bg-white rounded-[14px] flex items-center justify-center overflow-hidden p-0.5">
                 <img
-                  src="https://lh3.googleusercontent.com/d/19e0btT38boOEj8ddpDOxTZ8oAdS6CKwe"
+                  src="/images/Logo.webp"
                   alt="Logo Manielados"
                   className="w-full h-full object-cover rounded-[12px]"
                 />
@@ -69,3 +69,4 @@ export const Navbar: React.FC<NavbarProps> = () => {
     </header>
   );
 };
+

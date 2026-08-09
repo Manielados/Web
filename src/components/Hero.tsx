@@ -93,5 +93,3 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
     </section>
   );
 };
-  );
-};

@@ -71,3 +71,9 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
               </div>
             </div>
           </div>
+
+        </div>
+      </div>
+    </section>
+  );
+};

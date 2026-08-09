@@ -56,7 +56,7 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
             <div className="pt-6 border-t border-emerald-900/10 grid grid-cols-3 gap-2 text-center lg:text-left">
               <div className="flex items-center justify-center lg:justify-start gap-2 text-emerald-900/90 text-xs sm:text-sm font-semibold">
                 <Truck className="w-4 h-4 text-amber-600 shrink-0" />
-                <span>Delivery en Ocoa</span>
+                <span>Delivery en Ocoa RD$50 Extra</span>
               </div>
               <div className="flex items-center justify-center lg:justify-start gap-2 text-emerald-900/90 text-xs sm:text-sm font-semibold">
                 <ShieldCheck className="w-4 h-4 text-emerald-700 shrink-0" />
@@ -64,7 +64,7 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
               </div>
               <div className="flex items-center justify-center lg:justify-start gap-2 text-emerald-900/90 text-xs sm:text-sm font-semibold">
                 <Heart className="w-4 h-4 text-rose-500 shrink-0" />
-                <span>Receta Ocoeña</span>
+                <span>Sin convervantes</span>
               </div>
             </div>
           </div>

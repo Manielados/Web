@@ -328,7 +328,7 @@ export default function App() {
             <h5 className="font-bold text-amber-300 uppercase tracking-wider text-xs">Ubicación & Contacto</h5>
             <p className="flex items-center gap-1.5">
               <MapPin className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-              <span>San José de Ocoa, República Dominicana</span>
+              <span>16 de Agosto 119A, San José de Ocoa, República Dominicana</span>
             </p>
             <p className="flex items-center gap-1.5">
               <Phone className="w-3.5 h-3.5 text-amber-400 shrink-0" />
@@ -343,6 +343,15 @@ export default function App() {
           <div className="md:col-span-3 space-y-3">
             <h5 className="font-bold text-amber-300 uppercase tracking-wider text-xs">Síguenos</h5>
             <div className="flex items-center gap-3">
+              <a
+                href="https://www.instagram.com/manielados/"
+                target="_blank"
+                rel="noreferrer"
+                className="w-9 h-9 rounded-xl bg-emerald-900 hover:bg-emerald-800 text-amber-300 flex items-center justify-center transition-colors"
+                title="Instagram @manielados"
+              >
+                <Instagram className="w-4 h-4" />
+              </a>
               <a
                 href="https://wa.me/18293488943"
                 target="_blank"
@@ -378,5 +387,7 @@ export default function App() {
         onClearCart={handleClearCart}
       />
     </div>
+  );
+}
   );
 }

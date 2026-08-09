@@ -1,6 +1,0 @@
-{
-  "name": "Manielados · Catálogo de Helados",
-  "description": "Catálogo interactivo y pedidos por WhatsApp de helados artesanales Manielados en San José de Ocoa.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}

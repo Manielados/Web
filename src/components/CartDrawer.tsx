@@ -36,8 +36,8 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
     mensaje += `*San José de Ocoa*\n\n`;
 
     mensaje += `*HELADOS SELECCIONADOS:*\n`;
-    cartItems.forEach((item, index) => {
-      mensaje += `${index + 1}. ${item.cantidad}x *${item.nombre}* (${item.tipo}) - RD$${item.subtotal}\n`;
+    cartItems.forEach((item) => {
+      mensaje += `- ${item.cantidad}x *${item.nombre}* (${item.tipo}) - RD$${item.subtotal}\n`;
     });
 
     mensaje += `\n*MONTO TOTAL:*\n`;

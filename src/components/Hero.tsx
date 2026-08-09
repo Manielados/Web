@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowDown, Heart, ShieldCheck, Truck, Sparkles } from 'lucide-react';
+import { ArrowDown, Sparkles } from 'lucide-react';
 
 interface HeroProps {
   onExplore: () => void;
@@ -51,22 +51,6 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
                 Pedidos para Eventos
               </a>
             </div>
-
-            {/* Value Badges */}
-            <div className="pt-6 border-t border-emerald-900/10 grid grid-cols-3 gap-2 text-center lg:text-left">
-              <div className="flex items-center justify-center lg:justify-start gap-2 text-emerald-900/90 text-xs sm:text-sm font-semibold">
-                <Truck className="w-4 h-4 text-amber-600 shrink-0" />
-                <span>Delivery en Ocoa RD$50 Extra</span>
-              </div>
-              <div className="flex items-center justify-center lg:justify-start gap-2 text-emerald-900/90 text-xs sm:text-sm font-semibold">
-                <ShieldCheck className="w-4 h-4 text-emerald-700 shrink-0" />
-                <span>100% Natural</span>
-              </div>
-              <div className="flex items-center justify-center lg:justify-start gap-2 text-emerald-900/90 text-xs sm:text-sm font-semibold">
-                <Heart className="w-4 h-4 text-rose-500 shrink-0" />
-                <span>Sin convervantes</span>
-              </div>
-            </div>
           </div>
 
           {/* Right Column: Hero Visual Showcase */}
@@ -87,9 +71,3 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
               </div>
             </div>
           </div>
-
-        </div>
-      </div>
-    </section>
-  );
-};

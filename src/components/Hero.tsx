@@ -19,7 +19,7 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
           <div className="lg:col-span-7 text-center lg:text-left space-y-5">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-200/60 border border-amber-300/80 text-amber-900 text-xs font-bold tracking-wide uppercase shadow-xs">
               <Sparkles className="w-3.5 h-3.5 text-amber-700 animate-spin-slow" />
-              <span>Sabor Típico de San José de Ocoa</span>
+              <span>Helados en fundita</span>
             </div>
 
             <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-black text-emerald-950 leading-tight tracking-tight">
@@ -91,5 +91,7 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
         </div>
       </div>
     </section>
+  );
+};
   );
 };

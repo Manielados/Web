@@ -320,7 +320,7 @@ export default function App() {
               </span>
             </div>
             <p className="text-xs text-amber-100/70 leading-relaxed max-w-sm">
-              El auténtico sabor de San José de Ocoa en helados y paletas artesanales. Pedidos para consumo personal, cumpleaños, bodas y eventos especiales.
+              El auténtico sabor de San José de Ocoa dentro de nuestros helados en fundita artesanales. Pedidos para consumo personal, cumpleaños, bodas y eventos especiales.
             </p>
           </div>
 

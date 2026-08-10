@@ -1,6 +1,6 @@
 import React from 'react';
 import { Product } from '../types';
-import { X, Sparkles, Check, Flame, Award } from 'lucide-react';
+import { X, Sparkles } from 'lucide-react';
 
 interface ProductModalProps {
   product: Product | null;
@@ -51,35 +51,11 @@ export const ProductModal: React.FC<ProductModalProps> = ({
             <div className="text-2xl font-black text-emerald-900">
               RD${product.precio}
             </div>
-            {product.calorias && (
-              <div className="flex items-center gap-1 text-xs font-bold text-amber-800 bg-amber-100 px-3 py-1 rounded-full">
-                <Flame className="w-3.5 h-3.5 text-amber-600" />
-                <span>{product.calorias}</span>
-              </div>
-            )}
           </div>
 
           <p className="text-emerald-900/80 text-sm sm:text-base leading-relaxed">
             {product.desc}
           </p>
-
-          {/* Ingredients list */}
-          {product.ingredientes && product.ingredientes.length > 0 && (
-            <div className="space-y-2 bg-amber-50/70 p-4 rounded-2xl border border-amber-200/60">
-              <h4 className="text-xs font-extrabold uppercase tracking-wider text-emerald-950 flex items-center gap-1.5">
-                <Award className="w-4 h-4 text-amber-600" />
-                Ingredientes Clave
-              </h4>
-              <ul className="grid grid-cols-2 gap-2 text-xs text-emerald-900 font-medium">
-                {product.ingredientes.map((ing, idx) => (
-                  <li key={idx} className="flex items-center gap-1.5">
-                    <Check className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
-                    <span>{ing}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
 
           {/* Actions */}
           <div className="pt-2 flex items-center gap-3">

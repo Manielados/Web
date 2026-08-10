@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Product } from '../types';
-import { Plus, Minus, Star, Info, Check, Sparkles } from 'lucide-react';
+import { Plus, Minus, Star, Info, Sparkles } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
@@ -66,7 +66,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <button
           onClick={() => onOpenDetail(product)}
           className="absolute bottom-3 right-3 p-2 bg-white/90 hover:bg-white text-emerald-950 rounded-xl shadow-md transition-all opacity-90 group-hover:opacity-100 cursor-pointer"
-          title="Ver ingredientes y detalles"
+          title="Ver detalles"
         >
           <Info className="w-4 h-4" />
         </button>

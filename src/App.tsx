@@ -261,35 +261,35 @@ export default function App() {
         <div className="max-w-5xl mx-auto text-center space-y-8">
           <div>
             <span className="text-xs font-black uppercase tracking-wider text-amber-800 bg-amber-200/60 px-3 py-1 rounded-full">
-              Compromiso Manielados
+              ESTO ES MANIELADOS
             </span>
             <h3 className="font-serif text-2xl sm:text-3xl font-extrabold text-emerald-950 mt-2">
-              ¿Por qué nuestros helados son tan especiales?
+              Más que un helado, algo nuestro.
             </h3>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
             <div className="bg-white p-6 rounded-3xl border border-amber-200/80 shadow-xs space-y-2">
               <div className="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
-                🌾
+                🌴
               </div>
               <h4 className="font-serif font-bold text-base text-emerald-950">
-                Frutas del Campo Ocoeño
+                1. Sabores con identidad
               </h4>
-              <p className="text-xs text-emerald-900/70 font-medium leading-relaxed">
-                Compramos directamente a los productores locales de San José de Ocoa, garantizando frescura y apoyando la agricultura de nuestra sierra.
+              <p className="text-xs sm:text-sm text-emerald-900/70 font-medium leading-relaxed">
+                Combinamos ingredientes y sabores que nos recuerdan a nuestra tierra y a nuestra forma de disfrutar.
               </p>
             </div>
 
             <div className="bg-white p-6 rounded-3xl border border-amber-200/80 shadow-xs space-y-2">
               <div className="w-10 h-10 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center font-bold">
-                🥛
+                ✨
               </div>
               <h4 className="font-serif font-bold text-base text-emerald-950">
-                Leche Pura Batida
+                2. Hechos artesanalmente
               </h4>
-              <p className="text-xs text-emerald-900/70 font-medium leading-relaxed">
-                Nuestras bases cremosas se elaboran artesanalmente sin saborizantes artificiales ni conservantes industriales.
+              <p className="text-xs sm:text-sm text-emerald-900/70 font-medium leading-relaxed">
+                Cada Manielado se prepara con cuidado, buscando que el sabor y la textura estén a la altura de lo que queremos ofrecer.
               </p>
             </div>
 
@@ -298,10 +298,10 @@ export default function App() {
                 ❤️
               </div>
               <h4 className="font-serif font-bold text-base text-emerald-950">
-                Tradición Familiar
+                3. De Ocoa para Ocoa
               </h4>
-              <p className="text-xs text-emerald-900/70 font-medium leading-relaxed">
-                Mantenemos viva la receta tradicional ocoeña transmitida entre generaciones para regalarte sonrisas en cada paleta.
+              <p className="text-xs sm:text-sm text-emerald-900/70 font-medium leading-relaxed">
+                Somos una marca ocoeña. Y queremos que eso se sienta en cada sabor, cada detalle y cada Manielado.
               </p>
             </div>
           </div>

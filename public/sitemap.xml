@@ -1,9 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://manielados.vercel.app/</loc>
-    <lastmod>2026-08-10</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://manielados.vercel.app/images/Logo.webp</image:loc>
+      <image:title>Manielados - Helados Artesanales en San José de Ocoa</image:title>
+      <image:caption>Logo oficial de Manielados, helados en fundita artesanales en San José de Ocoa</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://manielados.vercel.app/images/Parroquia.webp</image:loc>
+      <image:title>San José de Ocoa - Tierra de Manielados</image:title>
+      <image:caption>Parroquia San José en San José de Ocoa, cuna de los helados artesanales Manielados</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://manielados.vercel.app/images/Tamarindo.webp</image:loc>
+      <image:title>Helado Artesanal de Tamarindo 100% Natural</image:title>
+      <image:caption>Helado de tamarindo natural elaborado artesanalmente en San José de Ocoa</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://manielados.vercel.app/images/Chinola%20crema.webp</image:loc>
+      <image:title>Helado Cremoso de Chinola Crema</image:title>
+      <image:caption>Helado cremoso de maracuyá y chinola natural en fundita</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://manielados.vercel.app/images/Dulce%20de%20leche.webp</image:loc>
+      <image:title>Helado Cremoso de Dulce de Leche Artesanal</image:title>
+      <image:caption>Helado de dulce de leche tradicional ocoeño</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://manielados.vercel.app/images/Coco%20Cream.webp</image:loc>
+      <image:title>Helado Premium Coco Cream</image:title>
+      <image:caption>Helado premium de coco natural con pulpa y crema</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://manielados.vercel.app/images/Fresa%20crema.webp</image:loc>
+      <image:title>Helado Cremoso de Fresa Crema</image:title>
+      <image:caption>Helado artesanal de fresas naturales con crema</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://manielados.vercel.app/images/Coco%20con%20batata.webp</image:loc>
+      <image:title>Helado Tradicional de Coco con Batata</image:title>
+      <image:caption>Receta tradicional dominicana de coco rallado con batata y canela</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://manielados.vercel.app/images/Cookies%20%26%20Cream.webp</image:loc>
+      <image:title>Helado Cookies and Cream</image:title>
+      <image:caption>Helado de galleta de chocolate y crema de vainilla</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://manielados.vercel.app/images/Mani%20crema.webp</image:loc>
+      <image:title>Helado Cremoso de Maní Crema</image:title>
+      <image:caption>Helado de maní tostado artesanal con toque crujiente</image:caption>
+    </image:image>
   </url>
 </urlset>

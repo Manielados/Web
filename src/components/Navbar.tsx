@@ -29,9 +29,9 @@ export const Navbar: React.FC<NavbarProps> = () => {
 
           <div>
             <div className="flex items-center gap-1.5">
-              <h1 className="font-serif text-2xl font-bold text-emerald-950 tracking-tight leading-none">
+              <span className="font-serif text-2xl font-bold text-emerald-950 tracking-tight leading-none">
                 Manielados
-              </h1>
+              </span>
               <span className="hidden sm:inline-block px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200">
                 Artesanal
               </span>

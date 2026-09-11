@@ -4,48 +4,70 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import App from '../src/App';
 
-function prerender() {
-  const distIndexPath = path.resolve(process.cwd(), 'dist', 'index.html');
+function injectPrerender(filePath: string, bodyHtml: string, preloadLinks: string[]) {
+  if (!fs.existsSync(filePath)) return;
 
-  if (!fs.existsSync(distIndexPath)) {
-    console.error(`[Prerender Error] dist/index.html was not found at ${distIndexPath}. Make sure 'vite build' runs first.`);
-    process.exit(1);
+  let html = fs.readFileSync(filePath, 'utf-8');
+
+  // Inject preload links into <head> if not already present
+  for (const link of preloadLinks) {
+    if (!html.includes(link) && html.includes('</head>')) {
+      html = html.replace('</head>', `    ${link}\n  </head>`);
+    }
   }
 
-  let indexHtml = fs.readFileSync(distIndexPath, 'utf-8');
+  // Find exact position of <div id="root"> and its boundary
+  const rootStart = html.indexOf('<div id="root">');
+  if (rootStart === -1) {
+    console.warn(`[Prerender Warning] Could not find <div id="root"> in ${filePath}`);
+    return;
+  }
 
-  // Render the full React App component to static HTML string
+  let afterRootIndex = -1;
+  const devScriptIndex = html.indexOf('<script', rootStart);
+  const bodyEndIndex = html.indexOf('</body>', rootStart);
+
+  if (devScriptIndex !== -1 && devScriptIndex < bodyEndIndex) {
+    afterRootIndex = devScriptIndex;
+  } else if (bodyEndIndex !== -1) {
+    afterRootIndex = bodyEndIndex;
+  }
+
+  if (afterRootIndex === -1) {
+    console.warn(`[Prerender Warning] Could not find end boundary after <div id="root"> in ${filePath}`);
+    return;
+  }
+
+  const beforeRoot = html.substring(0, rootStart);
+  const afterRoot = html.substring(afterRootIndex);
+
+  html = `${beforeRoot}<div id="root">${bodyHtml}</div>\n    ${afterRoot}`;
+
+  fs.writeFileSync(filePath, html, 'utf-8');
+  console.log(`[Prerender Success] Updated ${filePath} (${(html.length / 1024).toFixed(1)} KB)`);
+}
+
+function prerender() {
+  console.log('[Prerender] Generating static HTML for App...');
   const rawAppHtml = renderToString(React.createElement(App));
 
-  // In React 19, resource preloads (such as early images) may be rendered as <link rel="preload"...> tags
+  // Extract any React 19 resource preloads (<link rel="preload"...>)
   const preloadLinks: string[] = [];
   const bodyHtml = rawAppHtml.replace(/<link rel="preload"[^>]*>/g, (match) => {
     preloadLinks.push(match);
     return '';
   });
 
-  // Inject preload links into <head> if any exist
-  if (preloadLinks.length > 0 && indexHtml.includes('</head>')) {
-    const preloadBlock = `    ${preloadLinks.join('\n    ')}\n  </head>`;
-    indexHtml = indexHtml.replace('</head>', preloadBlock);
-  }
+  const rootIndexPath = path.resolve(process.cwd(), 'index.html');
+  const distIndexPath = path.resolve(process.cwd(), 'dist', 'index.html');
 
-  // Inject the prerendered HTML directly inside <div id="root"></div>
-  const rootRegex = /<div id="root">\s*<\/div>/;
-  if (!rootRegex.test(indexHtml)) {
-    // If not matching exact empty tags, try matching any root container
-    const genericRootRegex = /<div id="root">[\s\S]*?<\/div>/;
-    if (genericRootRegex.test(indexHtml)) {
-      indexHtml = indexHtml.replace(genericRootRegex, `<div id="root">${bodyHtml}</div>`);
-    } else {
-      console.warn('[Prerender Warning] Could not find <div id="root"> container in dist/index.html.');
-    }
-  } else {
-    indexHtml = indexHtml.replace(rootRegex, `<div id="root">${bodyHtml}</div>`);
-  }
+  // Update root index.html (so dev server & source repository have full static HTML)
+  injectPrerender(rootIndexPath, bodyHtml, preloadLinks);
 
-  fs.writeFileSync(distIndexPath, indexHtml, 'utf-8');
-  console.log(`[Prerender Success] Pre-rendered static HTML written to dist/index.html (${(indexHtml.length / 1024).toFixed(1)} KB)`);
+  // Update dist/index.html (so production build has full static HTML)
+  if (fs.existsSync(distIndexPath)) {
+    injectPrerender(distIndexPath, bodyHtml, preloadLinks);
+  }
 }
 
 prerender();

@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://manielados.vercel.app/sitemap.xml

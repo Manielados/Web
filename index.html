@@ -78,26 +78,19 @@ nav a:hover,nav a.active{border-color:var(--yellow)}
 .hero p{max-width:470px;margin-bottom:30px;color:#2c3a33}
 .hero p strong{color:var(--green)}
 .hero-btns{display:flex;flex-wrap:wrap;gap:14px}
-/* Hero en capas: 1) ilustración de fondo  2) fundita real con mano */
-.hero-art{position:relative;min-height:560px;background:linear-gradient(145deg,#cfe3c2,#8dbb7e);border-radius:48% 52% 46% 54% / 40% 42% 58% 60%;overflow:hidden}
-.hero-art .bg{
-  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:100% 50%;
-  -webkit-mask-image:linear-gradient(to right,transparent 0,#000 14%);
-          mask-image:linear-gradient(to right,transparent 0,#000 14%);
+/* Hero: foto real con fundita. La máscara difumina solo el borde izquierdo para fundirse con el texto */
+.hero-art{
+  position:relative;min-height:540px;border-radius:46% 54% 50% 50% / 38% 40% 60% 62%;overflow:hidden;
+  -webkit-mask-image:linear-gradient(to right,transparent 0,#000 16%);
+          mask-image:linear-gradient(to right,transparent 0,#000 16%);
 }
-.pop{
-  position:absolute;z-index:2;left:32%;bottom:0;width:40%;aspect-ratio:400/556;overflow:hidden;
-  transform:rotate(3deg);transform-origin:50% 100%;animation:float 5s ease-in-out infinite;
-  -webkit-mask-image:linear-gradient(to top,transparent 0,#000 9%);
-          mask-image:linear-gradient(to top,transparent 0,#000 9%);
+.hero-art .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 50%}
+.note{position:absolute;z-index:3;font-size:1.7rem;line-height:1;transform:rotate(-8deg)}
+.note.n1{
+  top:26px;right:7%;text-align:center;color:var(--green);
+  background:var(--cream);padding:14px 22px;border-radius:26px 30px 24px 32px;
+  box-shadow:0 8px 22px rgba(11,58,43,.22);
 }
-.pop img{
-  position:absolute;left:0;bottom:0;width:100%;height:auto;
-  filter:drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 1.5px #fff) drop-shadow(0 18px 18px rgba(15,77,58,.35));
-}
-@keyframes float{0%,100%{transform:rotate(3deg) translateY(0)}50%{transform:rotate(2deg) translateY(-10px)}}
-.note{position:absolute;z-index:3;font-size:1.7rem;line-height:1;transform:rotate(-12deg)}
-.note.n1{top:34px;right:6%;text-align:center;color:#fff;text-shadow:0 2px 8px rgba(11,58,43,.45)}
 
 /* Placeholder (se muestra si falta la imagen) */
 .ph{
@@ -282,15 +275,10 @@ footer{background:var(--green-2);color:#cfe0d6;padding:30px 0;font-size:.85rem}
       </div>
     </div>
     <div class="hero-art">
-      <!-- Capa 1: ilustración (assets/hero-fondo.jpg) -->
-      <img class="bg" src="assets/hero-fondo.jpg?v=1" alt="Iglesia y kiosco del parque de San José de Ocoa entre montañas"
+      <!-- Foto del hero (assets/hero-foto.jpg) -->
+      <img class="bg" src="assets/hero-foto.jpg?v=1" alt="Fundita de helado Coco Cream Manielados frente a la parroquia de San José de Ocoa"
            onerror="this.style.display='none'">
       <span class="note n1 hand">El verdadero<br>sabor de<br>Ocoa ♡</span>
-      <!-- Capa 2: fundita real con mano, PNG transparente (assets/hero-fundita.png) -->
-      <div class="pop">
-        <img src="assets/hero-fundita.png?v=1" alt="Fundita de helado Coco Cream Manielados"
-             onerror="this.style.display='none'">
-      </div>
     </div>
   </div>
 </section>

@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Lora:wght@400;500;600&family=Nunito+Sans:wght@600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=5">
+<link rel="stylesheet" href="css/styles.css?v=exp1">
 </head>
 <body>
 
@@ -177,11 +177,11 @@ cards.innerHTML = flavors.map(f => `
   <article class="card" data-id="${f.id}" data-search="${(f.name+' '+f.cat+' '+f.notes).toLowerCase()}">
     <div class="pic" style="--a:${f.a};--b:${f.b}">
       ${POP_SVG}
-      ${true ? `<img src="assets/sabores/${f.id}.webp?v=2" alt="Helado de ${f.name}" loading="lazy" class="${f.fit||''}"
+      ${true ? `<img src="assets/sabores/${f.id}.webp?v=3" alt="Helado de ${f.name}" loading="lazy" class="${f.fit||''}"
         onload="this.parentNode.classList.add('has-img')" onerror="this.remove()">` : ""}
-    </div>
     <span class="tag${f.cat==="Premium" ? " prem" : ""}">${f.cat}</span>
-    <h3>${f.name}</h3>
+    </div>
+        <h3>${f.name}</h3>
     <p>${f.notes}</p>
     <div class="buy">
       <span class="price">${money(f.price)}</span>

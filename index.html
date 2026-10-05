@@ -24,14 +24,15 @@
 html{scroll-behavior:smooth}
 body{
   font-family:'Lora',Georgia,serif;
-  background:var(--cream);
+  background:#efe4c0;
   color:var(--ink);
   line-height:1.6;
   overflow-x:hidden;
 }
+.page{max-width:1200px;margin:0 auto;background:var(--cream);position:relative;box-shadow:0 0 40px rgba(15,77,58,.08)}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
-.wrap{width:min(1180px,100% - 48px);margin-inline:auto}
+.wrap{width:100%;padding-inline:40px;margin-inline:auto}
 h1,h2,h3{font-family:'Fraunces',Georgia,serif;color:var(--green);line-height:1.08}
 .eyebrow{
   font-family:'Nunito Sans',sans-serif;font-weight:700;font-size:.82rem;
@@ -57,7 +58,7 @@ h1,h2,h3{font-family:'Fraunces',Georgia,serif;color:var(--green);line-height:1.0
 .btn-light:hover{background:#fff;color:var(--green)}
 
 /* Header */
-header{position:sticky;top:0;z-index:50;background:rgba(251,243,220,.92);backdrop-filter:blur(8px)}
+header{position:sticky;top:0;z-index:50;background:rgba(251,243,220,.94);backdrop-filter:blur(8px)}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 0}
 .logo{display:flex;flex-direction:column;align-items:center;line-height:1}
 .logo svg{width:92px;height:auto;margin-bottom:-4px}
@@ -72,31 +73,27 @@ nav a:hover,nav a.active{border-color:var(--yellow)}
 /* Hero */
 .hero{position:relative;padding:40px 0 90px;overflow:hidden}
 .hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:20px;align-items:center}
-.hero h1{font-size:clamp(2.4rem,5.2vw,4.1rem);margin-bottom:22px}
+.hero h1{font-size:clamp(2.2rem,4.6vw,3.6rem);margin-bottom:22px}
 .hero h1 em{display:block;font-family:'Caveat',cursive;font-weight:700;font-style:normal;color:var(--orange);font-size:1.15em;position:relative;width:fit-content}
 .hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:6px;background:var(--yellow);border-radius:6px;opacity:.85;transform:rotate(-1deg)}
 .hero p{max-width:470px;margin-bottom:30px;color:#2c3a33}
 .hero p strong{color:var(--green)}
 .hero-btns{display:flex;flex-wrap:wrap;gap:14px}
-/* Hero: la foto sale del borde derecho de la página y se difumina hacia el crema con degradados (sin máscara ni forma redonda) */
-.hero{display:flex;align-items:center;min-height:640px}
-.hero-grid{grid-template-columns:1fr;width:min(1180px,100% - 48px)}
+/* Hero dentro del lienzo de 1200px: la foto ocupa todo el hero y un degradado crema la funde bajo el texto; la fundita queda a la derecha */
+.hero{display:flex;align-items:center;min-height:640px;padding:40px 0 90px}
+.hero-grid{grid-template-columns:1fr;width:100%}
 .hero-grid>div:first-child{position:relative;z-index:2;max-width:560px}
-.hero-art{position:absolute;top:0;right:0;bottom:0;width:58%;z-index:1}
-.hero-art .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 50%}
+.hero-art{position:absolute;inset:0;z-index:1;overflow:hidden}
+.hero-art .bg{position:absolute;top:50%;right:-10%;width:80%;height:auto;transform:translateY(-50%)}
 .hero-art::after{
-  z-index:2;content:"";position:absolute;inset:0;pointer-events:none;
+  content:"";position:absolute;inset:0;pointer-events:none;
   background:
-    linear-gradient(to right,var(--cream) 0%,rgba(251,243,220,.92) 10%,rgba(251,243,220,.55) 24%,rgba(251,243,220,0) 46%),
-    linear-gradient(to top,var(--cream) 0%,rgba(251,243,220,0) 22%),
-    linear-gradient(to bottom,rgba(251,243,220,.85) 0%,rgba(251,243,220,0) 12%);
+    linear-gradient(to right,var(--cream) 0%,var(--cream) 34%,rgba(251,243,220,.8) 44%,rgba(251,243,220,.4) 54%,rgba(251,243,220,0) 63%),
+    linear-gradient(to left,var(--cream) 0%,rgba(251,243,220,0) 6%),
+    linear-gradient(to top,var(--cream) 0%,rgba(251,243,220,0) 20%),
+    linear-gradient(to bottom,rgba(251,243,220,.85) 0%,rgba(251,243,220,0) 10%);
 }
-.note{position:absolute;z-index:3;font-size:1.7rem;line-height:1;transform:rotate(-8deg)}
-.note.n1{
-  top:70px;right:7%;text-align:center;color:var(--green);
-  background:var(--cream);padding:14px 22px;border-radius:26px 30px 24px 32px;
-  box-shadow:0 8px 22px rgba(11,58,43,.22);
-}
+.note{position:absolute;z-index:3;font-size:1.7rem;line-height:1;transform:rotate(-12deg)}
 
 /* Placeholder (se muestra si falta la imagen) */
 .ph{
@@ -204,6 +201,7 @@ footer{background:var(--green-2);color:#cfe0d6;padding:30px 0;font-size:.85rem}
 
 /* Responsive */
 @media (max-width:1020px){
+  .hero-grid>div:first-child{max-width:52%}
   .cards{grid-template-columns:repeat(3,1fr)}
   .story-grid{grid-template-columns:1fr 1fr}
   .quote{display:none}
@@ -219,15 +217,15 @@ footer{background:var(--green-2);color:#cfe0d6;padding:30px 0;font-size:.85rem}
   .nav-cta .btn-outline{display:none}
   .hero{display:block;min-height:0;padding-bottom:0}
   .hero-grid>div:first-child{max-width:none}
-  .hero-art{position:relative;width:100%;height:380px;margin-top:28px}
+  .hero-art{position:relative;inset:auto;height:360px;margin-top:28px}
+  .hero-art .bg{top:0;right:auto;left:0;width:100%;height:100%;transform:none;object-fit:cover;object-position:50% 50%}
   .hero-art::after{background:
     linear-gradient(to bottom,var(--cream) 0%,rgba(251,243,220,0) 28%),
     linear-gradient(to top,var(--cream) 0%,rgba(251,243,220,0) 18%)}
-  .note.n1{top:44px;right:5%}
   .events-grid,.story-grid{grid-template-columns:1fr}
 }
 @media (max-width:620px){
-  .wrap{width:min(100% - 32px,1180px)}
+  .wrap{padding-inline:20px}
   .cards{grid-template-columns:repeat(2,1fr);gap:18px}
   .card .pic{height:150px}
   .flavors-head{align-items:stretch}
@@ -238,6 +236,7 @@ footer{background:var(--green-2);color:#cfe0d6;padding:30px 0;font-size:.85rem}
 </style>
 </head>
 <body>
+<div class="page">
 
 <header>
   <div class="wrap nav">
@@ -289,7 +288,6 @@ footer{background:var(--green-2);color:#cfe0d6;padding:30px 0;font-size:.85rem}
       <!-- Foto del hero (assets/hero-foto.jpg) -->
       <img class="bg" src="assets/hero-foto.jpg?v=1" alt="Fundita de helado Coco Cream Manielados frente a la parroquia de San José de Ocoa"
            onerror="this.style.display='none'">
-      <span class="note n1 hand">El verdadero<br>sabor de<br>Ocoa ♡</span>
     </div>
   </div>
 </section>
@@ -385,6 +383,7 @@ footer{background:var(--green-2);color:#cfe0d6;padding:30px 0;font-size:.85rem}
     <a href="https://wa.me/18293488943" target="_blank" rel="noopener">WhatsApp 829-348-8943</a>
   </div>
 </footer>
+</div><!-- /.page -->
 
 <div class="orderbar" id="orderbar" role="status" aria-live="polite">
   <span id="orderText">0 helados</span>

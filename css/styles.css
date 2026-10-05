@@ -58,11 +58,12 @@ header .nav{
   border:1px solid rgba(255,255,255,.75);
   box-shadow:0 10px 34px rgba(15,77,58,.14),inset 0 1px 0 rgba(255,255,255,.9),inset 0 -1px 0 rgba(255,255,255,.35);
 }
-.logo{display:flex;flex-direction:column;align-items:center;line-height:1}
-.logo svg{width:54px;height:auto;margin-bottom:-2px}
+.logo{display:flex;align-items:center;gap:12px;line-height:1}
+.logo-box{flex:none;width:46px;height:46px;border-radius:13px;overflow:hidden;background:var(--cream);
+  border:2px solid var(--green);box-shadow:0 0 0 2px rgba(247,185,40,.55),0 4px 10px rgba(15,77,58,.12);transition:transform .2s}
+.logo:hover .logo-box{transform:rotate(-3deg) scale(1.04)}
+.logo-box img{width:100%;height:100%;object-fit:cover}
 .logo b{font-family:'Fraunces',serif;font-weight:800;font-size:1.55rem;color:var(--green);letter-spacing:-.5px}
-.logo small{font-family:'Nunito Sans',sans-serif;font-weight:800;font-size:.5rem;letter-spacing:.18em;color:var(--green)}
-.logo small:last-child{display:none}
 section[id]{scroll-margin-top:100px}
 nav ul{display:flex;gap:34px;list-style:none}
 nav a{font-family:'Nunito Sans',sans-serif;font-weight:700;font-size:.95rem;color:var(--green);padding:6px 0;border-bottom:2px solid transparent;transition:border-color .2s}

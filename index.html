@@ -180,7 +180,7 @@ cards.innerHTML = flavors.map(f => `
   <article class="card" data-id="${f.id}" data-search="${(f.name+' '+f.cat+' '+f.notes).toLowerCase()}">
     <div class="pic" style="--a:${f.a};--b:${f.b}">
       ${POP_SVG}
-      ${true ? `<img src="assets/sabores/${f.id}.webp?v=1" alt="Helado de ${f.name}" loading="lazy" class="${f.fit||''}"
+      ${true ? `<img src="assets/sabores/${f.id}.webp?v=2" alt="Helado de ${f.name}" loading="lazy" class="${f.fit||''}"
         onload="this.parentNode.classList.add('has-img')" onerror="this.remove()">` : ""}
     </div>
     <span class="tag${f.cat==="Premium" ? " prem" : ""}">${f.cat}</span>

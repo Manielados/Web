@@ -26,7 +26,6 @@
         <li><a href="#sabores">Sabores</a></li>
         <li><a href="#nosotros">Nosotros</a></li>
         <li><a href="#sabores">Pedidos</a></li>
-        <li><a href="#eventos">Eventos</a></li>
       </ul>
     </nav>
     <div class="nav-cta">
@@ -55,7 +54,6 @@
       <p><strong>En Manielados</strong> creemos en lo simple: ingredientes naturales, recetas reales y el sabor único de San José de Ocoa. Cada fundita es un pedacito de nuestra tierra.</p>
       <div class="hero-btns">
         <a class="btn btn-primary" href="#sabores">Explorar sabores <span aria-hidden="true">→</span></a>
-        <a class="btn btn-outline" href="#eventos">Pedidos para eventos</a>
       </div>
     </div>
     <div class="hero-art">
@@ -100,7 +98,7 @@
       <h2>Un sueño dulce, nacido en Ocoa.</h2>
       <p><strong>Manielados</strong> nace del amor por lo nuestro: la tierra, la familia y los sabores reales.</p>
       <p>Desde San José de Ocoa, llevamos a tu boca la frescura de lo natural, con recetas artesanales y el sabor auténtico de siempre.</p>
-      <a class="btn btn-primary" href="#eventos">Conoce más <span aria-hidden="true">→</span></a>
+      <a class="btn btn-cream" href="#sabores">Ver sabores <span aria-hidden="true">→</span></a>
     </div>
     <div>
       <div class="quote hand">Pequeñas cosas, grandes momentos ♡</div>
@@ -109,24 +107,6 @@
   </div>
 </section>
 
-<!-- EVENTOS -->
-<section class="events" id="eventos">
-  <div class="wrap events-grid">
-    <div class="ev-left">
-      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></svg>
-      <div>
-        <h2>¿Tienes un evento?</h2>
-        <p>Llevamos la frescura de Manielados a tus celebraciones, reuniones y actividades.</p>
-        <a class="btn btn-light" id="cotiza" href="#">Solicita tu cotización <span aria-hidden="true">→</span></a>
-      </div>
-    </div>
-    <div class="ev-right">
-      <span class="hand">Del campo<br>a tu mesa</span>
-      <img src="assets/eventos-canasta.png?v=1" alt="Canasta con funditas de helado Manielados"
-           onerror="this.outerHTML='<div class=&quot;ph&quot;>assets/eventos-canasta.png</div>'">
-    </div>
-  </div>
-</section>
 </main>
 
 <footer>
@@ -291,9 +271,6 @@ q.addEventListener("input", () => {
   });
   $("empty").style.display = visible ? "none" : "block";
 });
-
-// ---------- Cotización de eventos ----------
-$("cotiza").href = `https://wa.me/${WA}?text=${encodeURIComponent("Hola Manielados 👋, quiero cotizar helados para un evento.")}`;
 
 // ---------- Menú móvil ----------
 const menuBtn = $("menuBtn"), nav = $("nav");

@@ -44,6 +44,10 @@ h1,h2,h3{font-family:'Fraunces',Georgia,serif;color:var(--green);line-height:1.0
 }
 .btn:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
 .btn-primary{background:var(--green);color:#fff;box-shadow:0 8px 20px rgba(15,77,58,.25)}
+.btn .arrow-down{color:var(--yellow);flex:none}
+#btnRateTop svg{transition:transform .6s cubic-bezier(.3,.7,.3,1);transform-origin:center}
+#btnRateTop:hover,#btnRateTop:focus-visible{transform:none}
+#btnRateTop:hover svg,#btnRateTop:focus-visible svg{transform:rotate(360deg) scale(1.15)}
 .btn-soft{background:#fffefa;border-color:rgba(15,77,58,.08);color:var(--green);box-shadow:0 4px 14px rgba(15,77,58,.08)}
 .btn-soft:hover{background:#fff}
 .btn-outline{background:transparent;color:var(--green)}

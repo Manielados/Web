@@ -78,16 +78,22 @@ nav a:hover,nav a.active{border-color:var(--yellow)}
 .hero p{max-width:470px;margin-bottom:30px;color:#2c3a33}
 .hero p strong{color:var(--green)}
 .hero-btns{display:flex;flex-wrap:wrap;gap:14px}
-/* Hero: foto real con fundita. La máscara difumina solo el borde izquierdo para fundirse con el texto */
-.hero-art{
-  position:relative;min-height:540px;border-radius:46% 54% 50% 50% / 38% 40% 60% 62%;overflow:hidden;
-  -webkit-mask-image:linear-gradient(to right,transparent 0,#000 16%);
-          mask-image:linear-gradient(to right,transparent 0,#000 16%);
-}
+/* Hero: la foto sale del borde derecho de la página y se difumina hacia el crema con degradados (sin máscara ni forma redonda) */
+.hero{display:flex;align-items:center;min-height:640px}
+.hero-grid{grid-template-columns:1fr;width:min(1180px,100% - 48px)}
+.hero-grid>div:first-child{position:relative;z-index:2;max-width:560px}
+.hero-art{position:absolute;top:0;right:0;bottom:0;width:58%;z-index:1}
 .hero-art .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 50%}
+.hero-art::after{
+  z-index:2;content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(to right,var(--cream) 0%,rgba(251,243,220,.92) 10%,rgba(251,243,220,.55) 24%,rgba(251,243,220,0) 46%),
+    linear-gradient(to top,var(--cream) 0%,rgba(251,243,220,0) 22%),
+    linear-gradient(to bottom,rgba(251,243,220,.85) 0%,rgba(251,243,220,0) 12%);
+}
 .note{position:absolute;z-index:3;font-size:1.7rem;line-height:1;transform:rotate(-8deg)}
 .note.n1{
-  top:26px;right:7%;text-align:center;color:var(--green);
+  top:70px;right:7%;text-align:center;color:var(--green);
   background:var(--cream);padding:14px 22px;border-radius:26px 30px 24px 32px;
   box-shadow:0 8px 22px rgba(11,58,43,.22);
 }
@@ -211,8 +217,13 @@ footer{background:var(--green-2);color:#cfe0d6;padding:30px 0;font-size:.85rem}
   nav ul{flex-direction:column;gap:0;padding:10px 24px 18px}
   nav li a{display:block;padding:12px 0}
   .nav-cta .btn-outline{display:none}
-  .hero-grid{grid-template-columns:1fr}
-  .hero-art{min-height:420px}
+  .hero{display:block;min-height:0;padding-bottom:0}
+  .hero-grid>div:first-child{max-width:none}
+  .hero-art{position:relative;width:100%;height:380px;margin-top:28px}
+  .hero-art::after{background:
+    linear-gradient(to bottom,var(--cream) 0%,rgba(251,243,220,0) 28%),
+    linear-gradient(to top,var(--cream) 0%,rgba(251,243,220,0) 18%)}
+  .note.n1{top:44px;right:5%}
   .events-grid,.story-grid{grid-template-columns:1fr}
 }
 @media (max-width:620px){

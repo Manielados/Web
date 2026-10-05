@@ -200,8 +200,6 @@ nav a:hover,nav a.active{border-color:var(--yellow)}
 footer{background:var(--green-2);color:#cfe0d6;padding:36px 0;font-size:.85rem}
 .foot{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center}
 .foot-contact{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px}
-.foot-addr{display:flex;align-items:center;gap:10px;font-style:normal;line-height:1.35;color:#e6efe9}
-.foot-addr svg{color:var(--yellow);flex:none}
 .foot-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;border:2px solid var(--yellow);border-radius:var(--radius);color:var(--yellow);font-family:'Nunito Sans',sans-serif;font-weight:800;font-size:.9rem;padding:0 16px;transition:background .2s,color .2s}
 .foot-wa,.foot-ig{width:42px;padding:0}
 .foot-btn:hover,.foot-btn:focus-visible{background:var(--yellow);color:var(--green-2)}

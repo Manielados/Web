@@ -73,7 +73,7 @@
       <div>
         <span class="eyebrow">Nuestros sabores</span>
         <h2>Un sabor para cada antojo.</h2>
-        <p>Selecciona los helados que deseas y envíanos tu orden por WhatsApp.</p>
+        <p>Agrega los helados que quieras, elige cómo recibirlos y envíanos tu pedido por WhatsApp.</p>
       </div>
       <label class="search">
         <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.300-4.300"/></svg>
@@ -138,82 +138,172 @@
 
 <div class="orderbar" id="orderbar" role="status" aria-live="polite">
   <span id="orderText">0 helados</span>
-  <a class="btn btn-yellow" id="sendOrder" href="#" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+  <button type="button" class="btn btn-yellow" id="openCheckout">Ver pedido</button>
 </div>
+
+<dialog class="checkout" id="checkout" aria-labelledby="coTitle">
+  <div class="co-body">
+    <div class="co-head">
+      <h2 id="coTitle">Tu pedido</h2>
+      <button type="button" class="co-x" id="coClose" aria-label="Cerrar">×</button>
+    </div>
+    <ul class="co-list" id="coList"></ul>
+    <div class="co-row"><span>Subtotal</span><b id="coSub"></b></div>
+
+    <fieldset class="co-opts">
+      <legend>¿Cómo quieres recibirlo?</legend>
+      <label class="opt"><input type="radio" name="delivery" value="pickup">
+        <span><b>Pasar a recoger</b><small>Gratis</small></span></label>
+      <label class="opt"><input type="radio" name="delivery" value="moto">
+        <span><b>Moto concho</b><small>+RD$50</small></span></label>
+    </fieldset>
+    <p class="co-hint" id="coHint">Elige una opción para continuar.</p>
+
+    <div class="co-row total"><span>Total</span><b id="coTotal"></b></div>
+    <div class="co-actions">
+      <button type="button" class="btn btn-outline" id="coBack">Seguir pidiendo</button>
+      <a class="btn btn-primary is-disabled" id="coSend" href="#" target="_blank" rel="noopener" aria-disabled="true">Enviar pedido por WhatsApp</a>
+    </div>
+  </div>
+</dialog>
 
 <script>
 const WA = "18293488943";
+const DELIVERY_FEE = 50;
+const money = n => "RD$" + n.toLocaleString("es-DO");
+
+// Menú: colores (--a/--b) solo se usan como fondo de la tarjeta
 const flavors = [
-  {id:"chinola", name:"Chinola", tag:"Natural", cls:"c1", notes:"Ácido · Refrescante · Tropical", img:"assets/chinola.png"},
-  {id:"oreo", name:"Oreo", tag:"Cremoso", cls:"c2", notes:"Chocolate · Vainilla · Galleta", img:"assets/oreo.png"},
-  {id:"coco-batata", name:"Coco-Batata", tag:"Cremoso", cls:"c3", notes:"Suave · Dulce · Exótico", img:"assets/coco-batata.png"},
-  {id:"pina", name:"Piña", tag:"Natural", cls:"c4", notes:"Dulce · Refrescante · Natural", img:"assets/pina.png"},
-  {id:"chocolate-dubai", name:"Chocolate Dubái", tag:"Premium", cls:"c5", notes:"Chocolate · Pistacho · Premium", img:"assets/chocolate-dubai.png"}
+  {id:"tamarindo", name:"Tamarindo", cat:"Clásico", notes:"Natural", price:25, a:"#d9a05b", b:"#8a4f22"},
+  {id:"fresa-crema", name:"Fresa Crema", cat:"Clásico", notes:"Cremoso", price:50, a:"#f6b3bd", b:"#d9677c"},
+  {id:"chinola-crema", name:"Chinola Crema", cat:"Clásico", notes:"Cremoso", price:50, a:"#f7c64a", b:"#e49a1c", img:"chinola.png"},
+  {id:"dulce-de-leche", name:"Dulce de leche", cat:"Clásico", notes:"Cremoso", price:50, a:"#e2a867", b:"#b06a2b"},
+  {id:"cookies-cream", name:"Cookies & Cream", cat:"Clásico", notes:"Cremoso + Galletas", price:50, a:"#dcd7cf", b:"#8f877c", img:"oreo.png"},
+  {id:"coco-batata", name:"Coco con batata", cat:"Clásico", notes:"Cremoso", price:50, a:"#f1a768", b:"#d9772b", img:"coco-batata.png"},
+  {id:"mani-crema", name:"Maní Crema", cat:"Clásico", notes:"Cremoso", price:50, a:"#e8c690", b:"#b98a4e"},
+  {id:"coco-cream", name:"Coco Cream", cat:"Premium", notes:"Cremoso", price:75, a:"#efe1c0", b:"#d3b97c", img:"coco-cream.png", fit:"contain"}
 ];
-const order = {};
-const cards = document.getElementById("cards");
+
+const POP_SVG = '<svg class="pop-ico" viewBox="0 0 64 128" aria-hidden="true"><path d="M12 8h40l-3 10H15z" fill="rgba(255,255,255,.55)"/><rect x="12" y="14" width="40" height="104" rx="12" fill="rgba(255,255,255,.85)"/><circle cx="32" cy="64" r="15" fill="#f7b928"/><path d="M24 70l5-7 4 4 3-4 4 7z" fill="none" stroke="#0f4d3a" stroke-width="1.8" stroke-linejoin="round"/></svg>';
+
+let order = {};          // { id: cantidad }
+let delivery = null;     // "pickup" | "moto" | null
+
+const $ = id => document.getElementById(id);
+const cards = $("cards");
 
 cards.innerHTML = flavors.map(f => `
-  <article class="card" data-id="${f.id}" data-search="${(f.name+' '+f.tag+' '+f.notes).toLowerCase()}">
-    <div class="pic ${f.cls}">
-      <img src="${f.img}?v=1" alt="Helado de ${f.name}" loading="lazy" onerror="this.remove()">
+  <article class="card" data-id="${f.id}" data-search="${(f.name+' '+f.cat+' '+f.notes).toLowerCase()}">
+    <div class="pic" style="--a:${f.a};--b:${f.b}">
+      ${POP_SVG}
+      ${f.img ? `<img src="assets/${f.img}?v=1" alt="Helado de ${f.name}" loading="lazy" class="${f.fit||''}"
+        onload="this.parentNode.classList.add('has-img')" onerror="this.remove()">` : ""}
     </div>
-    <span class="tag">${f.tag}</span>
+    <span class="tag${f.cat==="Premium" ? " prem" : ""}">${f.cat}</span>
     <h3>${f.name}</h3>
     <p>${f.notes}</p>
-    <div class="qty">
-      <button type="button" data-d="-1" aria-label="Quitar ${f.name}">−</button>
-      <output id="q-${f.id}">0</output>
-      <button type="button" data-d="1" aria-label="Agregar ${f.name}">+</button>
+    <div class="buy">
+      <span class="price">${money(f.price)}</span>
+      <div class="qty">
+        <button type="button" data-d="-1" aria-label="Quitar ${f.name}">−</button>
+        <output id="q-${f.id}" aria-live="polite">0</output>
+        <button type="button" data-d="1" aria-label="Agregar ${f.name}">+</button>
+      </div>
     </div>
   </article>`).join("");
 
+const items    = () => flavors.filter(f => order[f.id] > 0);
+const count    = () => items().reduce((s,f) => s + order[f.id], 0);
+const subtotal = () => items().reduce((s,f) => s + order[f.id] * f.price, 0);
+const fee      = () => delivery === "moto" ? DELIVERY_FEE : 0;
+
 cards.addEventListener("click", e => {
   const b = e.target.closest("button[data-d]");
-  if(!b) return;
+  if (!b) return;
   const id = b.closest(".card").dataset.id;
-  order[id] = Math.max(0, (order[id]||0) + Number(b.dataset.d));
-  document.getElementById("q-"+id).textContent = order[id];
+  order[id] = Math.max(0, (order[id] || 0) + Number(b.dataset.d));
+  $("q-" + id).textContent = order[id];
   updateBar();
 });
 
 function updateBar(){
-  const items = flavors.filter(f => order[f.id] > 0);
-  const total = items.reduce((s,f)=>s+order[f.id],0);
-  const bar = document.getElementById("orderbar");
-  bar.classList.toggle("show", total>0);
-  document.getElementById("orderText").textContent = total + (total===1 ? " helado" : " helados");
-  const lines = items.map(f => `• ${order[f.id]} x ${f.name}`).join("\n");
-  const msg = `Hola Manielados 👋, quiero hacer este pedido:\n${lines}\n\n¿Qué disponibilidad tienen?`;
-  document.getElementById("sendOrder").href = `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
+  const n = count();
+  $("orderbar").classList.toggle("show", n > 0);
+  $("orderText").textContent = `${n} ${n === 1 ? "helado" : "helados"} · ${money(subtotal())}`;
 }
 
-// Buscador
-const q = document.getElementById("q");
+// ---------- Checkout ----------
+const dlg = $("checkout");
+
+function buildMessage(){
+  const lines = items().map(f => `• ${order[f.id]} x ${f.name} — ${money(order[f.id] * f.price)}`).join("\n");
+  const entrega = delivery === "moto" ? `Moto concho (+${money(DELIVERY_FEE)})` : "Pasar a recoger (gratis)";
+  return `Hola Manielados 👋, quiero hacer este pedido:\n${lines}\n\n` +
+         `Subtotal: ${money(subtotal())}\nEntrega: ${entrega}\nTotal: ${money(subtotal() + fee())}`;
+}
+
+function renderCheckout(){
+  $("coList").innerHTML = items().map(f =>
+    `<li><span>${order[f.id]} × ${f.name}</span><b>${money(order[f.id] * f.price)}</b></li>`).join("");
+  $("coSub").textContent = money(subtotal());
+  $("coTotal").textContent = money(subtotal() + fee());
+  document.querySelectorAll(".opt").forEach(o => o.classList.toggle("sel", o.querySelector("input").checked));
+
+  const send = $("coSend"), ready = !!delivery;
+  send.classList.toggle("is-disabled", !ready);
+  send.setAttribute("aria-disabled", String(!ready));
+  send.href = ready ? `https://wa.me/${WA}?text=${encodeURIComponent(buildMessage())}` : "#";
+  $("coHint").textContent = !ready ? "Elige una opción para continuar."
+    : delivery === "moto" ? "Moto concho: coordina tu dirección por WhatsApp." : "Te avisamos por WhatsApp cuando esté listo.";
+}
+
+$("openCheckout").addEventListener("click", () => { if (count() > 0){ renderCheckout(); dlg.showModal(); } });
+$("coClose").addEventListener("click", () => dlg.close());
+$("coBack").addEventListener("click", () => dlg.close());
+dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+
+document.querySelectorAll('input[name="delivery"]').forEach(r =>
+  r.addEventListener("change", () => { delivery = r.value; renderCheckout(); }));
+
+function resetOrder(){
+  order = {};
+  delivery = null;
+  document.querySelectorAll('input[name="delivery"]').forEach(r => r.checked = false);
+  flavors.forEach(f => $("q-" + f.id).textContent = 0);
+  updateBar();
+  if (dlg.open) dlg.close();
+}
+
+$("coSend").addEventListener("click", e => {
+  if (!delivery){ e.preventDefault(); return; }
+  setTimeout(resetOrder, 0);   // el enlace de WhatsApp ya se abrió; la selección vuelve a 0
+});
+
+// ---------- Buscador ----------
+const q = $("q");
 q.addEventListener("input", () => {
   const t = q.value.trim().toLowerCase();
   let visible = 0;
   document.querySelectorAll(".card").forEach(c => {
     const show = c.dataset.search.includes(t);
     c.style.display = show ? "" : "none";
-    if(show) visible++;
+    if (show) visible++;
   });
-  document.getElementById("empty").style.display = visible ? "none" : "block";
+  $("empty").style.display = visible ? "none" : "block";
 });
 
-// Cotización de eventos
-document.getElementById("cotiza").href =
-  `https://wa.me/${WA}?text=${encodeURIComponent("Hola Manielados 👋, quiero cotizar helados para un evento.")}`;
+// ---------- Cotización de eventos ----------
+$("cotiza").href = `https://wa.me/${WA}?text=${encodeURIComponent("Hola Manielados 👋, quiero cotizar helados para un evento.")}`;
 
-// Menú móvil
-const menuBtn = document.getElementById("menuBtn"), nav = document.getElementById("nav");
+// ---------- Menú móvil ----------
+const menuBtn = $("menuBtn"), nav = $("nav");
 menuBtn.addEventListener("click", () => {
   const open = nav.classList.toggle("open");
   menuBtn.setAttribute("aria-expanded", open);
 });
-nav.addEventListener("click", e => { if(e.target.tagName==="A") nav.classList.remove("open"); });
+nav.addEventListener("click", e => { if (e.target.tagName === "A") nav.classList.remove("open"); });
 
-document.getElementById("yr").textContent = new Date().getFullYear();
+$("yr").textContent = new Date().getFullYear();
 </script>
 </body>
 </html>

@@ -1,0 +1,13 @@
+Fotos de los sabores: pon aqui cada foto con EXACTAMENTE estos nombres (.webp).
+Si falta una, la tarjeta muestra el placeholder automaticamente.
+
+tamarindo.webp
+fresa-crema.webp
+chinola-crema.webp
+dulce-de-leche.webp
+cookies-cream.webp
+coco-batata.webp
+mani-crema.webp
+coco-cream.webp
+
+Recomendado: cuadradas, 800x800 px, fondo uniforme.

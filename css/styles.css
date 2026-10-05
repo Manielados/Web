@@ -203,11 +203,14 @@ footer{background:var(--green-2);color:#cfe0d6;padding:36px 0;font-size:.85rem}
 @media (max-width:860px){
   .menu-btn{display:block}
   nav{position:absolute;top:100%;left:0;right:0;border-radius:0 0 22px 22px;display:none;
-    background:linear-gradient(135deg,rgba(255,255,255,.85),rgba(255,255,255,.6));-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
-    border:1px solid rgba(255,255,255,.8);box-shadow:0 14px 34px rgba(15,77,58,.16)}
+    background:#fffbec;border-top:1px solid rgba(15,77,58,.1);
+    box-shadow:0 18px 34px rgba(15,77,58,.2)}
   nav.open{display:block}
   nav ul{flex-direction:column;gap:0;padding:10px 24px 18px}
-  nav li a{display:block;padding:12px 0}
+  nav li{border-bottom:1px solid rgba(15,77,58,.08)}
+  nav li:last-child{border-bottom:0}
+  nav li a{display:block;padding:14px 0;border-bottom:0;font-size:1.05rem}
+  nav li a.active{color:var(--orange)}
   .phone-pill{display:none}
   .hero{display:block;min-height:0;padding-bottom:0}
   .hero-grid>div:first-child{max-width:none}

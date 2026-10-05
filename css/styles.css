@@ -322,3 +322,8 @@ footer{background:var(--green-2);color:#cfe0d6;padding:36px 0;font-size:.85rem}
   .visit-map iframe{min-height:300px}
 }
 
+
+/* Dirección y horario (Encuéntranos) */
+.visit-data{font-style:normal;display:grid;gap:8px;margin:0 0 20px}
+.visit-data p{display:flex;align-items:flex-start;gap:10px;color:#2c3a33;font-size:.95rem;line-height:1.4}
+.visit-data svg{flex:none;margin-top:2px;color:var(--orange)}

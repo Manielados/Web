@@ -1,3 +1,8 @@
+/* Tipografías alojadas en el propio sitio (sin parpadeo al cargar) */
+@font-face{font-family:'Fraunces';src:url(../fonts/Fraunces-var.woff2) format('woff2');font-weight:600 800;font-style:normal;font-display:block}
+@font-face{font-family:'Lora';src:url(../fonts/Lora-var.woff2) format('woff2');font-weight:400 600;font-style:normal;font-display:block}
+@font-face{font-family:'Nunito Sans';src:url(../fonts/NunitoSans-var.woff2) format('woff2');font-weight:600 800;font-style:normal;font-display:block}
+@font-face{font-family:'Caveat';src:url(../fonts/Caveat-var.woff2) format('woff2');font-weight:500 700;font-style:normal;font-display:block}
 :root{
   --cream:#fbf3dc;
   --cream-2:#f6ebc9;
